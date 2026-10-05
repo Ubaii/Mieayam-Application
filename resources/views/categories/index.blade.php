@@ -8,7 +8,9 @@
         <h1>Kategori Menu</h1>
         <p>Kelompokkan menu agar lebih mudah dikelola.</p>
     </div>
-    <button type="button" class="btn btn-primary" data-modal-open="add-category"><x-icon name="plus" /> Tambah Kategori</button>
+    <div class="heading-actions">
+        <button type="button" class="btn btn-primary" data-modal-open="add-category"><x-icon name="plus" /> Tambah</button>
+    </div>
 </div>
 <div class="filter-bar">
     <form class="filter-field search-control" method="get" action="{{ route('categories.index') }}"><x-icon name="search" /><input class="input-control" type="search" name="search" value="{{ request('search') }}" placeholder="Cari kategori..."></form>

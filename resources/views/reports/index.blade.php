@@ -29,7 +29,7 @@
                 @foreach($sales as $day)
                     <div class="weekly-bar-column" title="{{ $day['label'] }}: Rp {{ number_format($day['revenue'], 0, ',', '.') }}">
                         <strong>Rp {{ number_format($day['revenue'], 0, ',', '.') }}</strong>
-                        <span class="weekly-bar-track"><i style="height:{{ max(3, round($day['revenue'] / $salesMax * 100)) }}%"></i></span>
+                        <span class="weekly-bar-track"><i style="height: {{ max(3, round($day['revenue'] / $salesMax * 100)) }}%"></i></span>
                         <small>{{ $day['label'] }}</small>
                     </div>
                 @endforeach

@@ -4,152 +4,208 @@
     <meta charset="utf-8">
     <title>Laporan Penjualan - MIE AYAM WENGI'57</title>
     <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: Arial, sans-serif; font-size: 11px; color: #333; line-height: 1.5; padding: 40px 35px; }
-        .header { text-align: center; margin-bottom: 30px; padding-bottom: 20px; border-bottom: 3px solid #2563eb; }
-        .header h1 { color: #2563eb; font-size: 24px; margin-bottom: 5px; }
-        .header p { color: #666; font-size: 12px; }
-        .period { background: #eff6ff; padding: 15px 20px; border-radius: 8px; margin-bottom: 25px; text-align: center; border: 1px solid #bfdbfe; }
-        .period strong { color: #2563eb; }
-        .summary-box { background: #2563eb; color: white; padding: 25px; border-radius: 10px; margin-bottom: 25px; text-align: center; }
-        .summary-box h2 { font-size: 32px; margin-bottom: 5px; font-weight: bold; }
-        .summary-box p { font-size: 12px; opacity: 0.9; }
-        .stats-grid { display: table; width: 100%; margin-bottom: 30px; border-collapse: collapse; }
-        .stats-grid tr td { width: 33.33%; padding: 15px; background: #f9fafb; border: 1px solid #e5e7eb; text-align: center; }
-        .stats-grid tr td:first-child { border-left: none; }
-        .stats-grid tr td:last-child { border-right: none; }
-        .stats-grid .value { font-size: 18px; font-weight: bold; color: #2563eb; }
-        .stats-grid .label { font-size: 11px; color: #666; margin-top: 5px; }
-        .section { margin-bottom: 30px; }
-        .section h3 { color: #2563eb; font-size: 14px; margin-bottom: 15px; padding-bottom: 8px; border-bottom: 2px solid #2563eb; }
-        .table { width: 100%; border-collapse: collapse; margin-bottom: 15px; }
-        .table th { background: #2563eb; color: white; padding: 12px 15px; text-align: left; font-size: 11px; }
-        .table td { padding: 12px 15px; border-bottom: 1px solid #e5e7eb; font-size: 11px; }
-        .table tr:nth-child(even) { background: #f9fafb; }
-        .text-right { text-align: right; }
-        .text-center { text-align: center; }
-        .badge { display: inline-block; padding: 4px 12px; border-radius: 4px; font-size: 10px; font-weight: bold; }
-        .badge-tunai { background: #dcfce7; color: #166534; }
-        .badge-qris { background: #dbeafe; color: #1e40af; }
-        .footer { margin-top: 40px; padding-top: 20px; border-top: 1px solid #e5e7eb; text-align: center; color: #666; font-size: 10px; }
-        .empty { text-align: center; color: #999; padding: 30px; font-style: italic; font-size: 11px; }
+        @page { margin: 45px 50px 65px 50px; }
+        * { margin: 0; padding: 0; }
+        body { font-family: Helvetica, Arial, sans-serif; font-size: 10px; color: #111; line-height: 1.45; }
+
+        table { width: 100%; border-collapse: collapse; }
+        .right { text-align: right; }
+        .center { text-align: center; }
+
+        /* Kop laporan */
+        .letterhead td { vertical-align: bottom; padding-bottom: 10px; border-bottom: 2px solid #111; }
+        .brand { font-size: 17px; font-weight: bold; letter-spacing: 0.5px; }
+        .brand-sub { font-size: 9px; color: #555; margin-top: 2px; }
+        .doc-title { font-size: 13px; font-weight: bold; letter-spacing: 1.5px; text-transform: uppercase; }
+
+        /* Meta */
+        .meta { margin-top: 12px; margin-bottom: 22px; }
+        .meta td { padding: 2px 0; font-size: 10px; vertical-align: top; }
+        .meta .k { width: 70px; color: #555; }
+        .meta .sep { width: 10px; color: #555; }
+
+        /* Ringkasan angka */
+        .kpi { margin-bottom: 26px; border-top: 1px solid #111; border-bottom: 1px solid #111; }
+        .kpi td { width: 25%; padding: 12px 10px; border-right: 1px solid #ccc; vertical-align: top; }
+        .kpi td:first-child { padding-left: 0; }
+        .kpi td:last-child { border-right: none; }
+        .kpi .label { font-size: 8px; color: #555; text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 4px; }
+        .kpi .value { font-size: 14px; font-weight: bold; }
+
+        /* Section */
+        .section { margin-bottom: 24px; }
+        .section-title { font-size: 11px; font-weight: bold; text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 6px; }
+
+        /* Tabel data */
+        .data th { text-align: left; font-size: 8.5px; text-transform: uppercase; letter-spacing: 0.6px; color: #333; padding: 6px 8px; border-top: 1px solid #111; border-bottom: 1px solid #111; }
+        .data td { padding: 6px 8px; border-bottom: 1px solid #ddd; font-size: 10px; }
+        .data tr.total td { border-top: 1px solid #111; border-bottom: 2px solid #111; font-weight: bold; padding-top: 7px; padding-bottom: 7px; }
+        .data th.right, .data td.right { text-align: right; }
+        .data th.center, .data td.center { text-align: center; }
+
+        .empty { padding: 14px 0; color: #777; font-style: italic; border-top: 1px solid #111; border-bottom: 1px solid #ddd; }
+
+        .note { margin-top: 6px; font-size: 8.5px; color: #666; }
+
+        /* Footer */
+        .footer { position: fixed; bottom: -40px; left: 0; right: 0; border-top: 1px solid #bbb; padding-top: 6px; font-size: 8px; color: #666; }
     </style>
 </head>
 <body>
-    <div class="header">
-        <h1>MIE AYAM WENGI'57</h1>
-        <p>Laporan Penjualan</p>
+
+    <div class="footer">
+        MIE AYAM WENGI'57 &mdash; Laporan Penjualan &nbsp;|&nbsp; Dicetak {{ now()->translatedFormat('d F Y, H:i') }} WIB
     </div>
 
-    <div class="period">
-        <strong>Periode:</strong> {{ $from->translatedFormat('d F Y') }} s/d {{ $to->translatedFormat('d F Y') }}
-    </div>
+    <script type="text/php">
+        if (isset($pdf)) {
+            $font = $fontMetrics->getFont("Helvetica", "normal");
+            $pdf->page_text(480, 807, "Hal. {PAGE_NUM} dari {PAGE_COUNT}", $font, 8, array(0.4, 0.4, 0.4));
+        }
+    </script>
 
-    <div class="summary-box">
-        <h2>Rp {{ number_format($revenue, 0, ',', '.') }}</h2>
-        <p>Total Pendapatan</p>
-    </div>
-
-    <table class="stats-grid">
+    {{-- KOP --}}
+    <table class="letterhead">
         <tr>
             <td>
-                <div class="value">{{ $count }}</div>
-                <div class="label">Total Transaksi</div>
+                <div class="brand">MIE AYAM WENGI'57</div>
+                <div class="brand-sub">Restaurant Management System</div>
             </td>
-            <td>
-                <div class="value">{{ $itemsSold }}</div>
-                <div class="label">Item Terjual</div>
-            </td>
-            <td>
-                <div class="value">Rp {{ number_format($average, 0, ',', '.') }}</div>
-                <div class="label">Rata-rata Transaksi</div>
+            <td class="right">
+                <div class="doc-title">Laporan Penjualan</div>
             </td>
         </tr>
     </table>
 
+    {{-- META --}}
+    <table class="meta">
+        <tr>
+            <td class="k">Periode</td>
+            <td class="sep">:</td>
+            <td>{{ $from->translatedFormat('d F Y') }} s/d {{ $to->translatedFormat('d F Y') }}</td>
+        </tr>
+        <tr>
+            <td class="k">Dicetak</td>
+            <td class="sep">:</td>
+            <td>{{ now()->translatedFormat('d F Y, H:i') }} WIB</td>
+        </tr>
+    </table>
+
+    {{-- RINGKASAN --}}
+    <table class="kpi">
+        <tr>
+            <td>
+                <div class="label">Total Pendapatan</div>
+                <div class="value">Rp {{ number_format($revenue, 0, ',', '.') }}</div>
+            </td>
+            <td>
+                <div class="label">Total Transaksi</div>
+                <div class="value">{{ number_format($count, 0, ',', '.') }}</div>
+            </td>
+            <td>
+                <div class="label">Item Terjual</div>
+                <div class="value">{{ number_format($itemsSold, 0, ',', '.') }}</div>
+            </td>
+            <td>
+                <div class="label">Rata-rata / Transaksi</div>
+                <div class="value">Rp {{ number_format($average, 0, ',', '.') }}</div>
+            </td>
+        </tr>
+    </table>
+
+    {{-- 1. METODE PEMBAYARAN --}}
     <div class="section">
-        <h3>Pendapatan per Metode Pembayaran</h3>
+        <div class="section-title">1. Pendapatan per Metode Pembayaran</div>
         @if($paymentMethods->isNotEmpty())
-        <table class="table">
+        <table class="data">
             <thead>
                 <tr>
-                    <th style="width: 30%;">Metode</th>
-                    <th class="text-center" style="width: 35%;">Jumlah Transaksi</th>
-                    <th class="text-right" style="width: 35%;">Total Pendapatan</th>
+                    <th style="width: 40%;">Metode</th>
+                    <th class="center" style="width: 25%;">Jumlah Transaksi</th>
+                    <th class="right" style="width: 35%;">Pendapatan</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach($paymentMethods as $method)
                 <tr>
-                    <td>
-                        @if($method->payment_method === 'Tunai')
-                            <span class="badge badge-tunai">TUNAI</span>
-                        @else
-                            <span class="badge badge-qris">QRIS</span>
-                        @endif
-                    </td>
-                    <td class="text-center">{{ $method->transactions_count }} transaksi</td>
-                    <td class="text-right">Rp {{ number_format($method->revenue, 0, ',', '.') }}</td>
+                    <td>{{ $method->payment_method }}</td>
+                    <td class="center">{{ number_format($method->transactions_count, 0, ',', '.') }}</td>
+                    <td class="right">Rp {{ number_format($method->revenue, 0, ',', '.') }}</td>
                 </tr>
                 @endforeach
+                <tr class="total">
+                    <td>Total</td>
+                    <td class="center">{{ number_format($paymentMethods->sum('transactions_count'), 0, ',', '.') }}</td>
+                    <td class="right">Rp {{ number_format($paymentMethods->sum('revenue'), 0, ',', '.') }}</td>
+                </tr>
             </tbody>
         </table>
         @else
-        <div class="empty">Tidak ada data pembayaran</div>
+        <div class="empty">Tidak ada data pembayaran pada periode ini.</div>
         @endif
     </div>
 
+    {{-- 2. MENU TERLARIS --}}
     <div class="section">
-        <h3>Menu Terlaris</h3>
+        <div class="section-title">2. Menu Terlaris</div>
         @if($bestSellers->isNotEmpty())
-        <table class="table">
+        <table class="data">
             <thead>
                 <tr>
-                    <th class="text-center" style="width: 10%;">#</th>
-                    <th style="width: 45%;">Nama Menu</th>
-                    <th class="text-center" style="width: 20%;">Terjual</th>
-                    <th class="text-right" style="width: 25%;">Pendapatan</th>
+                    <th class="center" style="width: 8%;">No</th>
+                    <th style="width: 44%;">Nama Menu</th>
+                    <th class="center" style="width: 18%;">Terjual</th>
+                    <th class="right" style="width: 30%;">Pendapatan</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach($bestSellers as $index => $menu)
                 <tr>
-                    <td class="text-center">{{ $index + 1 }}</td>
+                    <td class="center">{{ $index + 1 }}</td>
                     <td>{{ $menu->name }}</td>
-                    <td class="text-center">{{ $menu->quantity }} item</td>
-                    <td class="text-right">Rp {{ number_format($menu->revenue, 0, ',', '.') }}</td>
+                    <td class="center">{{ number_format($menu->quantity, 0, ',', '.') }}</td>
+                    <td class="right">Rp {{ number_format($menu->revenue, 0, ',', '.') }}</td>
                 </tr>
                 @endforeach
             </tbody>
         </table>
         @else
-        <div class="empty">Tidak ada data menu</div>
+        <div class="empty">Tidak ada data menu pada periode ini.</div>
         @endif
     </div>
 
+    {{-- 3. RINGKASAN HARIAN --}}
     <div class="section">
-        <h3>Ringkasan Harian</h3>
-        <table class="table">
+        <div class="section-title">3. Ringkasan Harian</div>
+        @if(count($sales))
+        <table class="data">
             <thead>
                 <tr>
-                    <th style="width: 50%;">Tanggal</th>
-                    <th class="text-right" style="width: 50%;">Pendapatan</th>
+                    <th class="center" style="width: 8%;">No</th>
+                    <th style="width: 52%;">Tanggal</th>
+                    <th class="right" style="width: 40%;">Pendapatan</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach($sales as $day)
+                @foreach($sales as $i => $day)
                 <tr>
+                    <td class="center">{{ $i + 1 }}</td>
                     <td>{{ $day['label'] }}</td>
-                    <td class="text-right">Rp {{ number_format($day['revenue'], 0, ',', '.') }}</td>
+                    <td class="right">Rp {{ number_format($day['revenue'], 0, ',', '.') }}</td>
                 </tr>
                 @endforeach
+                <tr class="total">
+                    <td></td>
+                    <td>Total</td>
+                    <td class="right">Rp {{ number_format(collect($sales)->sum('revenue'), 0, ',', '.') }}</td>
+                </tr>
             </tbody>
         </table>
+        @else
+        <div class="empty">Tidak ada data penjualan harian pada periode ini.</div>
+        @endif
+        <div class="note">Data hanya mencakup transaksi dengan status selesai.</div>
     </div>
 
-    <div class="footer">
-        <p>Dicetak pada {{ now()->translatedFormat('d F Y, H:i') }} WIB</p>
-        <p>MIE AYAM WENGI'57 - Restaurant Management System</p>
-    </div>
 </body>
 </html>

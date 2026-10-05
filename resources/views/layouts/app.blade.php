@@ -6,6 +6,17 @@
     <meta name="theme-color" content="#2563eb">
     <title>@yield('title', 'Dashboard') — MIE AYAM WENGI'57</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <style>
+        
+        @media (max-width: 1023.98px) {
+            .app-main { margin-left: 0 !important; width: 100% !important; max-width: 100% !important; }
+        }
+        
+        @media (min-width: 1024px) {
+            .app-main { margin-left: 248px; }
+        }
+        .app-shell { overflow-x: hidden; }
+    </style>
 </head>
 <body class="app-body">
     <div class="app-shell">

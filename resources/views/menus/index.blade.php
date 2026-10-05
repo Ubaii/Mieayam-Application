@@ -6,9 +6,11 @@
 <div class="page-heading">
     <div>
         <h1>Manajemen Menu</h1>
-        <p>Atur produk dan ketersediaan menu MIE AYAM WENGI'57.</p>
+        <p>Atur produk dan ketersediaan menu.</p>
     </div>
-    <div class="heading-actions"><button type="button" class="btn btn-primary" data-modal-open="add-menu"><x-icon name="plus" /> Tambah Menu</button></div>
+    <div class="heading-actions">
+        <button type="button" class="btn btn-primary" data-modal-open="add-menu"><x-icon name="plus" /> Tambah</button>
+    </div>
 </div>
 @if($categories->where('is_active', true)->isEmpty())
 <p class="form-alert success">Buat dan aktifkan kategori terlebih dahulu sebelum menambahkan menu. <a href="{{ route('categories.index') }}" class="text-link">Kelola kategori</a></p>

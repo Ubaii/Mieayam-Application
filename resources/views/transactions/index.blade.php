@@ -3,7 +3,15 @@
 @section('title', 'Riwayat Transaksi')
 
 @section('content')
-    <div class="page-heading"><div><h1>Riwayat Transaksi</h1><p>Telusuri transaksi dan buka struk untuk detail pesanan.</p></div><a class="btn btn-outline" href="{{ route('reports.index') }}"><x-icon name="chart" /> Laporan penjualan</a></div>
+    <div class="page-heading">
+        <div>
+            <h1>Riwayat Transaksi</h1>
+            <p>Telusuri transaksi dan buka struk untuk detail pesanan.</p>
+        </div>
+        <div class="heading-actions">
+            <a class="btn btn-outline" href="{{ route('reports.index') }}"><x-icon name="chart" /> Laporan</a>
+        </div>
+    </div>
     <section class="panel">
         <form method="get" action="{{ route('transactions.index') }}">
             <div class="filter-bar">

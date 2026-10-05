@@ -1,8 +1,29 @@
-<div class="fixed inset-0 bg-black/30 z-20 hidden" data-sidebar-backdrop></div>
-<aside class="fixed top-0 left-0 bottom-0 w-[248px] bg-[#2563eb] text-white flex flex-col z-30 overflow-y-auto p-[23px_16px_15px]" id="app-sidebar" aria-label="Navigasi utama">
-    <a class="flex items-center mx-[6px] mb-[28px] text-white" href="{{ route(auth()->user()->isAdmin() ? 'dashboard' : 'cashier') }}">
-        <span class="block text-[14px] font-bold text-white tracking-[.08em]">MIE AYAM WENGI'57</span>
-    </a>
+<style>
+    /* Mobile / tablet: sidebar jadi drawer */
+    @media (max-width: 1023.98px) {
+        #app-sidebar { transform: translateX(-100%); transition: transform .2s ease-out; }
+        body.sidebar-is-open #app-sidebar { transform: none; }
+        body.sidebar-is-open [data-sidebar-backdrop] { display: block !important; }
+    }
+    /* Desktop: sidebar selalu tampil, tombol hamburger & tutup disembunyiin */
+    @media (min-width: 1024px) {
+        #app-sidebar { transform: none; }
+        [data-sidebar-open], #sidebar-close { display: none !important; }
+    }
+</style>
+
+<div class="fixed inset-0 bg-black/40 z-20 hidden" data-sidebar-backdrop></div>
+
+<aside class="fixed top-0 left-0 bottom-0 w-[280px] max-w-[85vw] bg-[#2563eb] text-white flex flex-col z-30 overflow-y-auto p-6 pt-4" id="app-sidebar" aria-label="Navigasi utama">
+    <div class="flex items-center justify-between mx-[6px] mb-[28px]">
+        <a class="flex items-center text-white" href="{{ route(auth()->user()->isAdmin() ? 'dashboard' : 'cashier') }}">
+            <span class="block text-[14px] font-bold text-white tracking-[.08em]">MIE AYAM WENGI'57</span>
+        </a>
+        {{-- Tombol tutup (mobile) --}}
+        <button type="button" id="sidebar-close" class="lg:hidden inline-flex items-center justify-center w-[30px] h-[30px] rounded-lg bg-transparent border-0 text-white hover:bg-white/15" aria-label="Tutup menu">
+            <svg class="w-[18px] h-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
+    </div>
 
     <nav class="flex flex-col flex-1 gap-[4px]">
         <p class="text-[10px] font-bold text-white tracking-[.09em] mx-[10px] mb-[5px]">PLATFORM</p>
@@ -46,3 +67,32 @@
         </form>
     </div>
 </aside>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var sidebar = document.getElementById('app-sidebar');
+        var backdrop = document.querySelector('[data-sidebar-backdrop]');
+        var openBtns = document.querySelectorAll('[data-sidebar-open]');
+        var closeBtn = document.getElementById('sidebar-close');
+        if (!sidebar || !backdrop) return;
+
+        function setOpen(open) {
+            document.body.classList.toggle('sidebar-is-open', open);
+            openBtns.forEach(function (b) {
+                b.setAttribute('aria-expanded', open ? 'true' : 'false');
+                var hamburger = b.querySelector('.hamburger');
+                if (hamburger) hamburger.classList.toggle('active', open);
+            });
+            document.body.style.overflow = open ? 'hidden' : '';
+        }
+
+        openBtns.forEach(function (b) { b.setAttribute('aria-controls', 'app-sidebar'); b.addEventListener('click', function () { setOpen(true); }); });
+        if (closeBtn) closeBtn.addEventListener('click', function () { setOpen(false); });
+        backdrop.addEventListener('click', function () { setOpen(false); });
+        sidebar.querySelectorAll('a').forEach(function (a) {
+            a.addEventListener('click', function () { setOpen(false); });
+        });
+        document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setOpen(false); });
+        window.matchMedia('(min-width: 1024px)').addEventListener('change', function (e) { if (e.matches) setOpen(false); });
+    });
+</script>
